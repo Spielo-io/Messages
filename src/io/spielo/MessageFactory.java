@@ -2,10 +2,7 @@ package io.spielo;
 
 import io.spielo.types.GenericEnumMixin;
 import io.spielo.types.MessageType1;
-import io.spielo.types.MessageType2Game;
 import io.spielo.types.MessageType2Lobby;
-import io.spielo.types.MessageType2Server;
-import io.spielo.util.*;
 
 public class MessageFactory {
     public Message getMessage(final byte[] bytes) {
