@@ -3,6 +3,7 @@ package io.spielo;
 import io.spielo.types.GenericEnumMixin;
 import io.spielo.types.MessageType1;
 import io.spielo.types.MessageType2Lobby;
+import io.spielo.types.MessageType2Server;
 
 public class MessageFactory {
     public Message getMessage(final byte[] bytes) {
@@ -21,6 +22,15 @@ public class MessageFactory {
     }
 
     private Message getServerMessage(final byte[] bytes) {
+        MessageType2Server type2 = getTypeFromByte(MessageType2Server.class, bytes, 5);
+        switch (type2) {
+			case CONNECT: 
+				return ConnectMessage.parse(bytes);
+			case HEARTBEAT:
+				break;
+			case DISCONNECT:
+				break;
+		}
     	return null;
     }
     
@@ -28,13 +38,13 @@ public class MessageFactory {
         MessageType2Lobby type2 = getTypeFromByte(MessageType2Lobby.class, bytes, 5);
         switch (type2) {
             case CREATE:
-            	return LobbyCreateMessage.parse(bytes);
+				break;
             case SETTINGS:
             	break;
             case JOIN:
                 break;
             default:
-                return null;
+				break;
         }
         return null;
     }
