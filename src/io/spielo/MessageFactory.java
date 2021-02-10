@@ -27,7 +27,7 @@ public class MessageFactory {
 			case CONNECT: 
 				return ConnectMessage.parse(bytes);
 			case HEARTBEAT:
-				break;
+				return HeartbeatMessage.parse(bytes);
 			case DISCONNECT:
 				break;
 		}
