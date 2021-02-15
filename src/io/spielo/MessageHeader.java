@@ -2,6 +2,7 @@ package io.spielo;
 
 import io.spielo.types.MessageType1;
 import io.spielo.types.MessageType2;
+import io.spielo.util.BufferBuilder;
 import io.spielo.util.BufferHelper;
 
 public class MessageHeader {
@@ -37,13 +38,11 @@ public class MessageHeader {
         return timestamp;
     }
     
-    public void intoBuffer(byte[] buffer) {
-    	BufferHelper.shortIntoBuffer(buffer, 0, buffer.length - 2);
-    	BufferHelper.shortIntoBuffer(buffer, 2, senderID);
-    	BufferHelper.shortIntoBuffer(buffer, 4, receiverID);
-    	buffer[6] = type1.getByte();
-    	buffer[7] = type2.getByte();
-    	BufferHelper.longIntoBuffer(buffer, 8, timestamp);
+    public void intoBuffer(final short length, final BufferBuilder builder) {
+    	builder.addShort(length);
+    	builder.addShort(senderID).addShort(receiverID);
+    	builder.addByte(type1.getByte()).addByte(type2.getByte());
+    	builder.addLong(timestamp);
     }
     
     public static MessageHeader parse(byte[] buffer) {

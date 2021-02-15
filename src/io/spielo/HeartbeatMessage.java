@@ -2,6 +2,7 @@ package io.spielo;
 
 import io.spielo.types.MessageType1;
 import io.spielo.types.MessageType2Server;
+import io.spielo.util.BufferBuilder;
 
 public class HeartbeatMessage extends Message {
 	
@@ -19,7 +20,7 @@ public class HeartbeatMessage extends Message {
 	}
 
 	@Override
-	protected final void bodyIntoBuffer(final byte[] buffer) {
+	protected final void bodyIntoBuffer(final BufferBuilder builder) {
 	}
 	
 	public static HeartbeatMessage parse(final byte[] buffer) {
