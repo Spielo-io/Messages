@@ -2,6 +2,7 @@ package io.spielo;
 
 import io.spielo.types.MessageType1;
 import io.spielo.types.MessageType2Server;
+import io.spielo.util.BufferBuilder;
 
 public class ConnectMessage extends Message {
 
@@ -23,7 +24,7 @@ public class ConnectMessage extends Message {
 	}
 
 	@Override
-	protected void bodyIntoBuffer(byte[] buffer) {		
+	protected void bodyIntoBuffer(final BufferBuilder builder) {		
 	}
 
 	public static Message parse(byte[] bytes) {	
