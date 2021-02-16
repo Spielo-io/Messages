@@ -39,7 +39,7 @@ public class MessageHeader {
     }
     
     public void intoBuffer(final short length, final BufferBuilder builder) {
-    	builder.addShort(length);
+    	builder.addShort((short) (length - 2));
     	builder.addShort(senderID).addShort(receiverID);
     	builder.addByte(type1.getByte()).addByte(type2.getByte());
     	builder.addLong(timestamp);
