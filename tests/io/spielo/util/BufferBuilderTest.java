@@ -1,9 +1,9 @@
 package io.spielo.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 class BufferBuilderTest {
 
@@ -17,7 +17,7 @@ class BufferBuilderTest {
 		}
 		
 		for (int i = 0; i < bytesToAdd.length; i++) {
-			assertEquals(bytesToAdd[i], builder.buffer.get(i));
+			assertEquals(bytesToAdd[i], builder.buffer.get(i).byteValue());
 		}
 		assertEquals(bytesToAdd.length, builder.buffer.size());
 	}
