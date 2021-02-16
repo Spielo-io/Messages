@@ -31,4 +31,3 @@ public class ConnectMessage extends Message {
 		return new ConnectMessage(header);
 	}
 }
-//test
