@@ -9,17 +9,17 @@ public class CreateLobbyMessage extends Message {
 	private final byte game;
 	private final byte timer;
 	private final byte bestOf;
-	
-	protected CreateLobbyMessage(final MessageHeader header) {
-		this(header, false, (byte) 0, (byte) 0, (byte) 0);
-	}
-	
-	protected CreateLobbyMessage(final MessageHeader header, final Boolean isPublic, final byte game, final byte timer, final byte bestOf) {
+
+	public CreateLobbyMessage(final MessageHeader header, final Boolean isPublic, final byte game, final byte timer, final byte bestOf) {
 		super(header);
 		this.isPublic = isPublic;
 		this.game = game;
 		this.timer = timer;
 		this.bestOf = bestOf;
+	}
+	
+	protected CreateLobbyMessage(final MessageHeader header) {
+		this(header, false, (byte) 0, (byte) 0, (byte) 0);
 	}
 
 	@Override
