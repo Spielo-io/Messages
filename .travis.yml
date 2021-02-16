@@ -14,7 +14,7 @@ stages:
 jobs:
   include:
     - stage: build
-      script: ./gradlew build
+      script: ./gradlew -x test build
     - stage: snapshot
       script: ./gradlew publish -Dsnapshot=true
     - stage: release
