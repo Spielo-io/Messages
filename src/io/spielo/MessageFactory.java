@@ -37,10 +37,11 @@ public class MessageFactory {
     }
     
     private Message getLobbyMessage(final byte[] bytes) {
+    	BufferIterator iterator = new BufferIterator(bytes);
         MessageType2Lobby type2 = getTypeFromByte(MessageType2Lobby.class, bytes, 5);
         switch (type2) {
             case CREATE:
-				break;
+				return CreateLobbyMessage.parse(iterator);
             case SETTINGS:
             	break;
             case JOIN:
