@@ -3,6 +3,7 @@ package io.spielo;
 import io.spielo.types.MessageType1;
 import io.spielo.types.MessageType2Server;
 import io.spielo.util.BufferBuilder;
+import io.spielo.util.BufferIterator;
 
 public class ConnectMessage extends Message {
 
@@ -27,8 +28,8 @@ public class ConnectMessage extends Message {
 	protected void bodyIntoBuffer(final BufferBuilder builder) {		
 	}
 
-	public static Message parse(byte[] bytes) {	
-		MessageHeader header = MessageHeader.parse(bytes);
+	public static Message parse(BufferIterator iterator) {	
+		MessageHeader header = MessageHeader.parse(iterator);
 		return new ConnectMessage(header);
 	}
 }

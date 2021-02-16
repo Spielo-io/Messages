@@ -4,6 +4,7 @@ import io.spielo.types.GenericEnumMixin;
 import io.spielo.types.MessageType1;
 import io.spielo.types.MessageType2Lobby;
 import io.spielo.types.MessageType2Server;
+import io.spielo.util.BufferIterator;
 
 public class MessageFactory {
     public Message getMessage(final byte[] bytes) {
@@ -22,12 +23,13 @@ public class MessageFactory {
     }
 
     private Message getServerMessage(final byte[] bytes) {
+    	BufferIterator iterator = new BufferIterator(bytes);
         MessageType2Server type2 = getTypeFromByte(MessageType2Server.class, bytes, 5);
         switch (type2) {
 			case CONNECT: 
-				return ConnectMessage.parse(bytes);
+				return ConnectMessage.parse(iterator);
 			case HEARTBEAT:
-				return HeartbeatMessage.parse(bytes);
+				return HeartbeatMessage.parse(iterator);
 			case DISCONNECT:
 				break;
 		}

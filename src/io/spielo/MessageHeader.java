@@ -3,7 +3,7 @@ package io.spielo;
 import io.spielo.types.MessageType1;
 import io.spielo.types.MessageType2;
 import io.spielo.util.BufferBuilder;
-import io.spielo.util.BufferHelper;
+import io.spielo.util.BufferIterator;
 
 public class MessageHeader {
 	public final static short LENGTH = 16;
@@ -45,10 +45,13 @@ public class MessageHeader {
     	builder.addLong(timestamp);
     }
     
-    public static MessageHeader parse(byte[] buffer) {
-    	short senderID = BufferHelper.fromBufferIntoShort(buffer, 0);
-    	short receiverID = BufferHelper.fromBufferIntoShort(buffer, 2);
-    	long timestamp = BufferHelper.fromBufferIntoLong(buffer, 6);
+    public static MessageHeader parse(BufferIterator iterator) {
+    	
+    	short senderID = iterator.getNextShort();
+    	short receiverID = iterator.getNextShort();
+    	iterator.getNext();
+    	iterator.getNext();
+    	long timestamp = iterator.getNextLong();
     	
     	return new MessageHeader(senderID, receiverID, null, null, timestamp);
     }
