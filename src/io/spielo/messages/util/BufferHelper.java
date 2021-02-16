@@ -1,4 +1,6 @@
-package io.spielo.util;
+package io.spielo.messages.util;
+
+import java.util.Arrays;
 
 public class BufferHelper {
 
@@ -21,5 +23,10 @@ public class BufferHelper {
 			shift += 8;
 		}
 		return value;
+	}
+
+	public static String getChar(final byte[] buffer, int offset) {
+		byte[] newArray = Arrays.copyOfRange(buffer, offset, offset+2);
+		return new String(newArray);
 	}
 }

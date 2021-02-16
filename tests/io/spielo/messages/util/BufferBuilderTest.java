@@ -1,10 +1,8 @@
-package io.spielo.util;
+package io.spielo.messages.util;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Iterator;
 
 
 class BufferBuilderTest {

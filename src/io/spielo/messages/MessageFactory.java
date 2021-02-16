@@ -1,10 +1,10 @@
-package io.spielo;
+package io.spielo.messages;
 
-import io.spielo.types.GenericEnumMixin;
-import io.spielo.types.MessageType1;
-import io.spielo.types.MessageType2Lobby;
-import io.spielo.types.MessageType2Server;
-import io.spielo.util.BufferIterator;
+import io.spielo.messages.types.GenericEnumMixin;
+import io.spielo.messages.types.MessageType1;
+import io.spielo.messages.types.MessageType2Lobby;
+import io.spielo.messages.types.MessageType2Server;
+import io.spielo.messages.util.BufferIterator;
 
 public class MessageFactory {
     public Message getMessage(final byte[] bytes) {
@@ -16,7 +16,7 @@ public class MessageFactory {
             case LOBBY:
             	return getLobbyMessage(bytes);
             case GAME:
-            	return getGameMessage(bytes);
+                return getGameMessage(bytes);
             default:
                 return null;
         }

@@ -1,4 +1,6 @@
-package io.spielo.util;
+package io.spielo.messages.util;
+
+import java.util.Arrays;
 
 public class BufferIterator {
 	int iterator;
@@ -24,7 +26,9 @@ public class BufferIterator {
 	public final Boolean hasNextLong() {
 		return iterator + 7 < buffer.length;
 	}
-	
+
+	public final Boolean hasNextString() { return iterator + 1 < buffer.length; }
+
 	public final byte getNext() {
 		return buffer[iterator++];
 	}
@@ -49,5 +53,11 @@ public class BufferIterator {
 			value |= ((long)(buffer[iterator++] & 0xFF) << shift);
 		}
 		return value;
+	}
+
+	public final String exhaustString() {
+		byte[] b = Arrays.copyOfRange(buffer, iterator, buffer.length);
+		iterator += b.length;
+		return new String(b);
 	}
 }
