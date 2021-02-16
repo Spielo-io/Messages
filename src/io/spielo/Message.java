@@ -1,5 +1,7 @@
 package io.spielo;
 
+import io.spielo.util.BufferBuilder;
+
 public abstract class Message {
 	
     private final MessageHeader header;
@@ -11,12 +13,12 @@ public abstract class Message {
     public byte[] toByteArray() {
     	final short length = (short) (getBodyLength() + MessageHeader.LENGTH);
     	
-    	final byte[] buffer = new byte[length];
+    	BufferBuilder builder = new BufferBuilder(length);
     	
-    	header.intoBuffer(buffer);
-    	bodyIntoBuffer(buffer);
+    	header.intoBuffer(length, builder);
+    	bodyIntoBuffer(builder);
     	
-    	return buffer;
+    	return builder.build();
     }
     
     public final MessageHeader getHeader() {
@@ -25,5 +27,5 @@ public abstract class Message {
     
     protected abstract short getBodyLength();
     
-    protected abstract void bodyIntoBuffer(final byte[] buffer);
+    protected abstract void bodyIntoBuffer(final BufferBuilder builder);
 }
