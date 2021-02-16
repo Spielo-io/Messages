@@ -1,7 +1,7 @@
 name: Publish package to GitHub Packages
 on:
   release:
-    types: [published]
+    types: [create]
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -11,15 +11,11 @@ jobs:
         with:
           java-version: 15
       - name: Publish package
-        run: gradle publish
+        run: |
+          ./gradlew publish
+          echo "$VERSION"
+          echo "$EVENT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ github.event.tag_name }} 
           EVENT: ${{ toJson(github) }}  
-      - name: Print out github event
-        env:
-          VERSION: ${{ github.event.tag_name }} 
-          EVENT: ${{ toJson(github) }}  
-        run: |
-          echo "$VERSION"
-          echo "$EVENT"
