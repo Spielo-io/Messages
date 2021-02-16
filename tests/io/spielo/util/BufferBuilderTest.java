@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Iterator;
+
 
 class BufferBuilderTest {
 
@@ -24,31 +26,74 @@ class BufferBuilderTest {
 
 	@Test
 	void testAddShort() {
-		short s = 1;
-		BufferBuilder builder = new BufferBuilder(2);
-		builder.addShort(s);
-		assertEquals(builder.buffer.get(0), (byte) 1);
-		assertEquals(builder.buffer.get(1), (byte) 0);
+		short[] valuesToTest = new short[] { 
+				Short.MAX_VALUE, 
+				Short.MIN_VALUE };
+		byte[] bytesToCompare = new byte[] { 
+				-1, 127,         
+				0, -128 };
+		
+		BufferBuilder builder = new BufferBuilder(valuesToTest.length * 2);
+		for (short value : valuesToTest) {
+			builder.addShort(value);
+		}
+
+		assertEquals(bytesToCompare.length, builder.buffer.size());
+		for (int i = 0; i < builder.buffer.size(); i++) {
+			assertEquals(bytesToCompare[i], builder.buffer.get(i).byteValue());
+		}
 	}
 
 	@Test
 	void testAddInt() {
-		fail("Not yet implemented");
+		int[] valuesToTest = new int[] {     
+				Integer.MAX_VALUE, 
+				Integer.MIN_VALUE };
+		byte[] bytesToCompare = new byte[] { 
+				-1, -1, -1, 127,   
+				0, 0, 0, -128};
+		
+		BufferBuilder builder = new BufferBuilder(valuesToTest.length * 4);
+		for (int value : valuesToTest) {
+			builder.addInt(value);
+		}
+
+		assertEquals(bytesToCompare.length, builder.buffer.size());
+		for (int i = 0; i < builder.buffer.size(); i++) {
+			assertEquals(bytesToCompare[i], builder.buffer.get(i).byteValue());
+		}
 	}
 
 	@Test
 	void testAddLong() {
-		fail("Not yet implemented");
+		long[] valuesToTest = new long[] {     
+				Long.MAX_VALUE, 
+				Long.MIN_VALUE };
+		byte[] bytesToCompare = new byte[] { 
+				-1, -1, -1, -1, -1, -1, -1, 127,   
+				0, 0, 0, 0, 0, 0, 0, -128};
+		
+		BufferBuilder builder = new BufferBuilder(valuesToTest.length * 8);
+		for (long value : valuesToTest) {
+			builder.addLong(value);
+		}
+
+		assertEquals(bytesToCompare.length, builder.buffer.size());
+		for (int i = 0; i < builder.buffer.size(); i++) {
+			assertEquals(bytesToCompare[i], builder.buffer.get(i).byteValue());
+		}
 	}
 
 	@Test
 	void testAddString() {
-		fail("Not yet implemented");
-	}
+		String value = "Hello World! This is a test.";
+		
+		BufferBuilder builder = new BufferBuilder(value.length());
+		builder.addString(value);
 
-	@Test
-	void testBuild() {
-		fail("Not yet implemented");
+		assertEquals(value.length(), builder.buffer.size());
+		for (int i = 0; i < value.length(); i++) {
+			assertEquals(value.getBytes()[i], builder.buffer.get(i).byteValue());
+		}
 	}
-
 }
