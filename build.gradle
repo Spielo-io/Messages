@@ -27,8 +27,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/spielo-io/messages")
             credentials {
-                username = "lukesaltweather"
-                password = "3367da0a447ed0f3cccec00de0976e515ecf11d7"
+                username = System.getenv("USERN")
+                password = System.getenv("AUTH_KEY")
             }
         }
     }
