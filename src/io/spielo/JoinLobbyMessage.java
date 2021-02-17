@@ -3,6 +3,8 @@ package io.spielo;
 import io.spielo.util.BufferBuilder;
 import io.spielo.util.BufferIterator;
 
+import java.nio.charset.StandardCharsets;
+
 public class JoinLobbyMessage extends Message{
     private final String code;
     private final String displayName;
@@ -15,7 +17,7 @@ public class JoinLobbyMessage extends Message{
 
     @Override
     protected short getBodyLength() {
-        return (short)(12 + 2*this.displayName.length());
+        return (short)(code.getBytes(StandardCharsets.UTF_8).length + displayName.getBytes(StandardCharsets.UTF_8).length);
     }
 
     @Override
