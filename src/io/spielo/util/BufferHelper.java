@@ -24,9 +24,4 @@ public class BufferHelper {
 		}
 		return value;
 	}
-
-	public static String getChar(final byte[] buffer, int offset) {
-		byte[] newArray = Arrays.copyOfRange(buffer, offset, offset+2);
-		return new String(newArray);
-	}
 }
