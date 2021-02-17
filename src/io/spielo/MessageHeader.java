@@ -1,9 +1,9 @@
-package io.spielo.messages;
+package io.spielo;
 
-import io.spielo.messages.types.MessageType1;
-import io.spielo.messages.types.MessageType2;
-import io.spielo.messages.util.BufferBuilder;
-import io.spielo.messages.util.BufferIterator;
+import io.spielo.types.MessageType1;
+import io.spielo.types.MessageType2;
+import io.spielo.util.BufferBuilder;
+import io.spielo.util.BufferIterator;
 
 public class MessageHeader {
 	public final static short LENGTH = 16;

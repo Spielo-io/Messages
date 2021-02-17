@@ -1,6 +1,6 @@
-package io.spielo.messages;
+package io.spielo;
 
-import io.spielo.messages.util.BufferBuilder;
+import io.spielo.util.BufferBuilder;
 
 public abstract class Message {
 	

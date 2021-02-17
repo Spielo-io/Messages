@@ -1,4 +1,4 @@
-package io.spielo.messages.types;
+package io.spielo.types;
 
 public enum MessageType2Server implements GenericEnumMixin, MessageType2{
     CONNECT((byte) 0), 

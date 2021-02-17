@@ -1,4 +1,4 @@
-package io.spielo.messages.util;
+package io.spielo.util;
 
 import java.util.ArrayList;
 import java.util.List;

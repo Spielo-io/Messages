@@ -1,4 +1,4 @@
-package io.spielo.messages.types;
+package io.spielo.types;
 
 public interface GenericEnumMixin {
     public byte getByte();

@@ -1,9 +1,9 @@
-package io.spielo.messages;
+package io.spielo;
 
-import io.spielo.messages.types.MessageType1;
-import io.spielo.messages.types.MessageType2Server;
-import io.spielo.messages.util.BufferBuilder;
-import io.spielo.messages.util.BufferIterator;
+import io.spielo.types.MessageType1;
+import io.spielo.types.MessageType2Server;
+import io.spielo.util.BufferBuilder;
+import io.spielo.util.BufferIterator;
 
 public class ConnectMessage extends Message {
 

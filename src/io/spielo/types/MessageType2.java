@@ -1,4 +1,4 @@
-package io.spielo.messages.types;
+package io.spielo.types;
 
 public interface MessageType2 {
 	byte getByte();

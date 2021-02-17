@@ -1,4 +1,4 @@
-package io.spielo.messages.types;
+package io.spielo.types;
 
 public enum MessageType2Lobby implements GenericEnumMixin, MessageType2{
     CREATE((byte) 0), 
