@@ -56,10 +56,10 @@ public class BufferIterator {
 	public final String getString() {
 		StringBuilder builder = new StringBuilder();
 		
-		byte b = buffer[iterator];
+		byte b = buffer[iterator++];
 		do {
 			builder.append(b);
-			b = buffer[iterator];
+			b = buffer[iterator++];
 		} while (b != '\0');
 
 		return builder.toString();
