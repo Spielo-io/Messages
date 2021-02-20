@@ -1,7 +1,5 @@
 package io.spielo.util;
 
-import java.util.Arrays;
-
 public class BufferIterator {
 	int iterator;
 	final byte[] buffer;
@@ -55,9 +53,15 @@ public class BufferIterator {
 		return value;
 	}
 
-	public final String exhaustString() {
-		byte[] b = Arrays.copyOfRange(buffer, iterator, buffer.length);
-		iterator += b.length;
-		return new String(b);
+	public final String getString() {
+		StringBuilder builder = new StringBuilder();
+		
+		byte b = buffer[iterator];
+		do {
+			builder.append(b);
+			b = buffer[iterator];
+		} while (b != '\0');
+
+		return builder.toString();
 	}
 }

@@ -41,6 +41,7 @@ public class BufferBuilder {
 		for (Byte b : value.getBytes()) {
 			buffer.add(b);
 		}
+		buffer.add((byte) '\0');
 		return this;
 	}
 	
