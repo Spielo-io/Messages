@@ -16,7 +16,7 @@ public class MessageFactory {
             case LOBBY:
             	return getLobbyMessage(bytes);
             case GAME:
-            	return getGameMessage(bytes);
+                return getGameMessage(bytes);
             default:
                 return null;
         }

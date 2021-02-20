@@ -1,5 +1,7 @@
 package io.spielo.util;
 
+import java.util.Arrays;
+
 public class BufferHelper {
 
 	public static short fromBufferIntoShort(final byte[] buffer, final int offset) {
