@@ -88,9 +88,10 @@ class BufferBuilderTest {
 		BufferBuilder builder = new BufferBuilder(value.length());
 		builder.addString(value);
 
-		assertEquals(value.length(), builder.buffer.size());
+		assertEquals(value.length() + 1, builder.buffer.size());
 		for (int i = 0; i < value.length(); i++) {
 			assertEquals(value.getBytes()[i], builder.buffer.get(i).byteValue());
 		}
+		assertEquals(builder.buffer.get(builder.buffer.size() - 1), (byte) '\0');
 	}
 }
