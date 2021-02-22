@@ -1,4 +1,4 @@
-package io.spielo.util;
+package io.spielo.messages.util;
 
 public class BufferIterator {
 	int iterator;

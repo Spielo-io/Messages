@@ -1,9 +1,9 @@
-package io.spielo;
-
-import io.spielo.util.BufferBuilder;
-import io.spielo.util.BufferIterator;
+package io.spielo.messages;
 
 import java.nio.charset.StandardCharsets;
+
+import io.spielo.messages.util.BufferBuilder;
+import io.spielo.messages.util.BufferIterator;
 
 public class JoinLobbyMessage extends Message{
     private final String code;

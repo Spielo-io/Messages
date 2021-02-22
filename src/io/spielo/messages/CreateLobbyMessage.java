@@ -1,7 +1,7 @@
-package io.spielo;
+package io.spielo.messages;
 
-import io.spielo.util.BufferBuilder;
-import io.spielo.util.BufferIterator;
+import io.spielo.messages.util.BufferBuilder;
+import io.spielo.messages.util.BufferIterator;
 
 public class CreateLobbyMessage extends Message {
 
