@@ -21,7 +21,7 @@ class BufferBuilderTest {
 			assertEquals(bytesToAdd[i], builder.buffer.get(i).byteValue());
 		}
 		assertEquals(bytesToAdd.length, builder.buffer.size());
-	}
+	} 
 
 	@Test
 	void testAddShort() {
