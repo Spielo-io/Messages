@@ -3,6 +3,7 @@ package io.spielo.messages.lobbysettings;
 import io.spielo.messages.types.GenericEnumMixin;
 
 public enum LobbyTimer implements GenericEnumMixin{
+	UNKNOWN(-1),
 	Seconds_30(0),
 	Minute_1(1),
 	Minute_3(2);

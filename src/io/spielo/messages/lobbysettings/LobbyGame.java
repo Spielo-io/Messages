@@ -3,6 +3,7 @@ package io.spielo.messages.lobbysettings;
 import io.spielo.messages.types.GenericEnumMixin;
 
 public enum LobbyGame implements GenericEnumMixin{
+	UNKNOWN(-1),
 	TicTacToe(0),
 	Win4(1),
 	Mill(2),
