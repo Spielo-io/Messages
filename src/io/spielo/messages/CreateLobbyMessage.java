@@ -44,4 +44,20 @@ public class CreateLobbyMessage extends Message {
 		
 		return new CreateLobbyMessage(header, isPublic, game, timer, bestOf);
 	}
+
+	public Boolean getPublic() {
+		return isPublic;
+	}
+
+	public byte getGame() {
+		return game;
+	}
+
+	public byte getTimer() {
+		return timer;
+	}
+
+	public byte getBestOf() {
+		return bestOf;
+	}
 }

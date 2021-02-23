@@ -32,4 +32,12 @@ public class JoinLobbyMessage extends Message{
         String display_name = iterator.getString();
         return new JoinLobbyMessage(header, code, display_name);
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
 }
