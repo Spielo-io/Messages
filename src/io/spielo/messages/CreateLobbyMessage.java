@@ -1,5 +1,9 @@
 package io.spielo.messages;
 
+import io.spielo.messages.lobbysettings.LobbyBestOf;
+import io.spielo.messages.lobbysettings.LobbyGame;
+import io.spielo.messages.lobbysettings.LobbyTimer;
+import io.spielo.messages.types.GenericEnumMixin;
 import io.spielo.messages.util.BufferBuilder;
 import io.spielo.messages.util.BufferIterator;
 
@@ -8,12 +12,13 @@ import java.nio.charset.StandardCharsets;
 public class CreateLobbyMessage extends Message {
 
 	private final Boolean isPublic;
-	private final byte game;
-	private final byte timer;
-	private final byte bestOf;
+	private final LobbyGame game;
+	private final LobbyTimer timer;
+	private final LobbyBestOf bestOf;
 	private final String displayName;
 
-	public CreateLobbyMessage(final MessageHeader header, final Boolean isPublic, final byte game, final byte timer, final byte bestOf, final String displayName) {
+	public CreateLobbyMessage(final MessageHeader header, 
+			final Boolean isPublic, final LobbyGame game, final LobbyTimer timer, final LobbyBestOf bestOf, final String displayName) {
 		super(header);
 		this.isPublic = isPublic;
 		this.game = game;
@@ -22,17 +27,14 @@ public class CreateLobbyMessage extends Message {
 		this.displayName = displayName;
 	}
 
-	public CreateLobbyMessage(final MessageHeader header, final Boolean isPublic, final byte game, final byte timer, final byte bestOf) {
+	public CreateLobbyMessage(final MessageHeader header, 
+			Boolean isPublic, final LobbyGame game, final LobbyTimer timer, final LobbyBestOf bestOf) {
 		super(header);
 		this.isPublic = isPublic;
 		this.game = game;
 		this.timer = timer;
 		this.bestOf = bestOf;
 		this.displayName = "";
-	}
-	
-	protected CreateLobbyMessage(final MessageHeader header) {
-		this(header, false, (byte) 0, (byte) 0, (byte) 0, "");
 	}
 
 	@Override
@@ -43,40 +45,55 @@ public class CreateLobbyMessage extends Message {
 	@Override
 	protected void bodyIntoBuffer(BufferBuilder builder) {
 		builder.addByte((byte)(isPublic ? 1 : 0));
-		builder.addByte(game);
-		builder.addByte(timer);
-		builder.addByte(bestOf);
+		builder.addByte(game.getByte());
+		builder.addByte(timer.getByte());
+		builder.addByte(bestOf.getByte());
 		builder.addString(displayName);
 	}
 	
 	public static Message parse(BufferIterator iterator) {	
 		MessageHeader header = MessageHeader.parse(iterator);
 		Boolean isPublic = iterator.getNext() == 1 ? true : false;
-		byte game = iterator.getNext();
-		byte timer = iterator.getNext();
-		byte bestOf = iterator.getNext();
+		GenericEnumMixin game = getTypeFromByte(LobbyGame.class, iterator.getNext());
+		GenericEnumMixin timer = getTypeFromByte(LobbyTimer.class, iterator.getNext());
+		GenericEnumMixin bestOf = getTypeFromByte(LobbyBestOf.class, iterator.getNext());
 		String displayName = iterator.getString();
 		
-		return new CreateLobbyMessage(header, isPublic, game, timer, bestOf, displayName);
+		return new CreateLobbyMessage(header, 
+				isPublic, (LobbyGame) game, (LobbyTimer) timer, (LobbyBestOf) bestOf, displayName);
 	}
 
 	public Boolean getPublic() {
 		return isPublic;
 	}
 
-	public byte getGame() {
+	public LobbyGame getGame() {
 		return game;
 	}
 
-	public byte getTimer() {
+	public LobbyTimer getTimer() {
 		return timer;
 	}
 
-	public byte getBestOf() {
+	public LobbyBestOf getBestOf() {
 		return bestOf;
 	}
 
 	public String getDisplayName() {
 		return displayName;
 	}
+    
+    private static<T extends Enum<T> & GenericEnumMixin> T getTypeFromByte(final Class<T> enumClass, final byte b){
+        T type = null;
+        for (T a : enumClass.getEnumConstants()) {
+            if (a.getByte() == b) {
+                type = a;
+                break;
+            }
+        }
+        if (type == null) {
+            throw new NullPointerException();
+        }
+        return type;
+    }
 }
