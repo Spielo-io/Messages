@@ -1,10 +1,8 @@
 package io.spielo.messages.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
-
-import io.spielo.messages.util.BufferBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BufferBuilderTest {
 
