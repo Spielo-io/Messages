@@ -1,6 +1,7 @@
 package io.spielo.messages;
 
 import io.spielo.messages.util.BufferBuilder;
+import io.spielo.messages.util.BufferIterator;
 
 import java.nio.charset.StandardCharsets;
 
@@ -20,5 +21,12 @@ public class CreateLobbyResponseMessage extends Message {
     @Override
     protected void bodyIntoBuffer(BufferBuilder builder) {
         builder.addString(this.code);
+    }
+
+    public static Message parse(BufferIterator iterator) {
+        MessageHeader header = MessageHeader.parse(iterator);
+        String code = iterator.getString();
+
+        return new CreateLobbyResponseMessage(header, code);
     }
 }
