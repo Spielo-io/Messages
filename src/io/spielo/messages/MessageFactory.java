@@ -45,6 +45,12 @@ public class MessageFactory {
             case SETTINGS:
             	break;
             case JOIN:
+                return JoinLobbyMessage.parse(iterator);
+            case CREATERESPONSE:
+                return CreateLobbyResponseMessage.parse(iterator);
+            case JOINRESPONSE:
+                return JoinLobbyResponseMessage.parse(iterator);
+            case SETTINGSRESPONSE:
                 break;
             default:
 				break;
