@@ -68,10 +68,13 @@ public class MessageHeader {
     	switch (type1) {
 		case SERVER: 
 			type2 = iterator.getNextByteEnum(MessageType2Server.class);
+			break;
 		case LOBBY: 
 			type2 = iterator.getNextByteEnum(MessageType2Lobby.class);
+			break;
 		case GAME: 
 			type2 = iterator.getNextByteEnum(MessageType2Game.class);
+			break;
 		}
 		
     	long timestamp = iterator.getNextLong();
