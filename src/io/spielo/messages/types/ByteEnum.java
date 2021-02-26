@@ -1,5 +1,5 @@
 package io.spielo.messages.types;
 
-public interface GenericEnumMixin {
+public interface ByteEnum {
     public byte getByte();
 }

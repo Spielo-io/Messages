@@ -1,7 +1,10 @@
 package io.spielo.messages;
 
+import io.spielo.messages.types.ByteEnum;
 import io.spielo.messages.types.MessageType1;
-import io.spielo.messages.types.MessageType2;
+import io.spielo.messages.types.MessageType2Game;
+import io.spielo.messages.types.MessageType2Lobby;
+import io.spielo.messages.types.MessageType2Server;
 import io.spielo.messages.util.BufferBuilder;
 import io.spielo.messages.util.BufferIterator;
 
@@ -11,10 +14,10 @@ public class MessageHeader {
 	private final short senderID;
     private final short receiverID;
     private final MessageType1 type1;
-    private final MessageType2 type2;
+    private final ByteEnum type2;
     private final long timestamp;
 
-    public MessageHeader(final short senderID, final short receiverID, final MessageType1 type1, final MessageType2 type2, final long timestamp) {
+    public MessageHeader(final short senderID, final short receiverID, final MessageType1 type1, final ByteEnum type2, final long timestamp) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.type1 = type1;
@@ -22,7 +25,7 @@ public class MessageHeader {
         this.timestamp = timestamp;	
     }
     
-    public MessageHeader(final int senderID, final int receiverID, final MessageType1 type1, final MessageType2 type2, final long timestamp) {
+    public MessageHeader(final int senderID, final int receiverID, final MessageType1 type1, final ByteEnum type2, final long timestamp) {
     	this((short) senderID, (short) receiverID, type1, type2, timestamp);
     }
 
@@ -33,6 +36,14 @@ public class MessageHeader {
     public final short getReceiverID() {
         return receiverID;
     }
+    
+    public final MessageType1 getType1() {
+    	return type1;
+    }
+    
+    public final ByteEnum getType2() {
+    	return type2;
+    }
 
     public final long getTimestamp() {
         return timestamp;
@@ -40,8 +51,10 @@ public class MessageHeader {
     
     public void intoBuffer(final short length, final BufferBuilder builder) {
     	builder.addShort((short) (length - 2));
-    	builder.addShort(senderID).addShort(receiverID);
-    	builder.addByte(type1.getByte()).addByte(type2.getByte());
+    	builder.addShort(senderID);
+    	builder.addShort(receiverID);
+    	builder.addByteEnum(type1);
+    	builder.addByteEnum(type2);
     	builder.addLong(timestamp);
     }
     
@@ -49,10 +62,23 @@ public class MessageHeader {
     	
     	short senderID = iterator.getNextShort();
     	short receiverID = iterator.getNextShort();
-    	iterator.getNext();
-    	iterator.getNext();
+    	MessageType1 type1 = iterator.getNextByteEnum(MessageType1.class);
+    	ByteEnum type2 = null;
+    	
+    	switch (type1) {
+		case SERVER: 
+			type2 = iterator.getNextByteEnum(MessageType2Server.class);
+			break;
+		case LOBBY: 
+			type2 = iterator.getNextByteEnum(MessageType2Lobby.class);
+			break;
+		case GAME: 
+			type2 = iterator.getNextByteEnum(MessageType2Game.class);
+			break;
+		}
+		
     	long timestamp = iterator.getNextLong();
     	
-    	return new MessageHeader(senderID, receiverID, null, null, timestamp);
+    	return new MessageHeader(senderID, receiverID, type1, type2, timestamp);
     }
 }

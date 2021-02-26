@@ -1,5 +1,7 @@
-package io.spielo.messages;
+package io.spielo.messages.lobby;
 
+import io.spielo.messages.Message;
+import io.spielo.messages.MessageHeader;
 import io.spielo.messages.util.BufferBuilder;
 import io.spielo.messages.util.BufferIterator;
 
@@ -23,8 +25,7 @@ public class CreateLobbyResponseMessage extends Message {
         builder.addString(this.code);
     }
 
-    public static Message parse(BufferIterator iterator) {
-        MessageHeader header = MessageHeader.parse(iterator);
+    public static Message parse(BufferIterator iterator, MessageHeader header) {
         String code = iterator.getString();
 
         return new CreateLobbyResponseMessage(header, code);

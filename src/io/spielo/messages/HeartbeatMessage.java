@@ -24,7 +24,7 @@ public class HeartbeatMessage extends Message {
 	protected final void bodyIntoBuffer(final BufferBuilder builder) {
 	}
 	
-	public static HeartbeatMessage parse(BufferIterator iterator) {
-		return new HeartbeatMessage(MessageHeader.parse(iterator));
+	public static HeartbeatMessage parse(final BufferIterator iterator, final MessageHeader header) {
+		return new HeartbeatMessage(header);
 	}
 }
