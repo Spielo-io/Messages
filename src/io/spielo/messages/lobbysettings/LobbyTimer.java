@@ -1,8 +1,8 @@
 package io.spielo.messages.lobbysettings;
 
-import io.spielo.messages.types.GenericEnumMixin;
+import io.spielo.messages.types.ByteEnum;
 
-public enum LobbyTimer implements GenericEnumMixin{
+public enum LobbyTimer implements ByteEnum{
 	UNKNOWN(-1),
 	Seconds_30(0),
 	Minute_1(1),

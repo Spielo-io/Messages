@@ -1,8 +1,8 @@
 package io.spielo.messages.lobbysettings;
 
-import io.spielo.messages.types.GenericEnumMixin;
+import io.spielo.messages.types.ByteEnum;
 
-public enum LobbyGame implements GenericEnumMixin{
+public enum LobbyGame implements ByteEnum{
 	UNKNOWN(-1),
 	TicTacToe(0),
 	Win4(1),

@@ -3,6 +3,8 @@ package io.spielo.messages.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.spielo.messages.types.ByteEnum;
+
 public class BufferBuilder {
 	final List<Byte> buffer;
 	
@@ -16,6 +18,11 @@ public class BufferBuilder {
 	
 	public final BufferBuilder addByte(final byte value) {
 		buffer.add(value);
+		return this;
+	}
+	
+	public final BufferBuilder addByteEnum(final ByteEnum value) {
+		buffer.add(value.getByte());
 		return this;
 	}
 

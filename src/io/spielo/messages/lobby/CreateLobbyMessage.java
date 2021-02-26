@@ -1,9 +1,11 @@
-package io.spielo.messages;
+package io.spielo.messages.lobby;
 
+import io.spielo.messages.Message;
+import io.spielo.messages.MessageHeader;
 import io.spielo.messages.lobbysettings.LobbyBestOf;
 import io.spielo.messages.lobbysettings.LobbyGame;
 import io.spielo.messages.lobbysettings.LobbyTimer;
-import io.spielo.messages.types.GenericEnumMixin;
+import io.spielo.messages.types.ByteEnum;
 import io.spielo.messages.util.BufferBuilder;
 import io.spielo.messages.util.BufferIterator;
 
@@ -44,13 +46,12 @@ public class CreateLobbyMessage extends Message {
 	public static Message parse(BufferIterator iterator) {	
 		MessageHeader header = MessageHeader.parse(iterator);
 		Boolean isPublic = iterator.getNext() == 1 ? true : false;
-		GenericEnumMixin game = getTypeFromByte(LobbyGame.class, iterator.getNext());
-		GenericEnumMixin timer = getTypeFromByte(LobbyTimer.class, iterator.getNext());
-		GenericEnumMixin bestOf = getTypeFromByte(LobbyBestOf.class, iterator.getNext());
-		String displayName = iterator.getString();
+		LobbyGame game = iterator.getNextByteEnum(LobbyGame.class);
+		LobbyTimer timer = iterator.getNextByteEnum(LobbyTimer.class);
+		LobbyBestOf bestOf = iterator.getNextByteEnum(LobbyBestOf.class);
+		String username = iterator.getString();
 		
-		return new CreateLobbyMessage(header, 
-				isPublic, (LobbyGame) game, (LobbyTimer) timer, (LobbyBestOf) bestOf, displayName);
+		return new CreateLobbyMessage(header, isPublic, (LobbyGame) game, (LobbyTimer) timer, (LobbyBestOf) bestOf, username);
 	}
 
 	public Boolean getPublic() {
@@ -72,18 +73,4 @@ public class CreateLobbyMessage extends Message {
 	public String getUsername() {
 		return username;
 	}
-    
-    private static<T extends Enum<T> & GenericEnumMixin> T getTypeFromByte(final Class<T> enumClass, final byte b){
-        T type = null;
-        for (T a : enumClass.getEnumConstants()) {
-            if (a.getByte() == b) {
-                type = a;
-                break;
-            }
-        }
-        if (type == null) {
-            throw new NullPointerException();
-        }
-        return type;
-    }
 }

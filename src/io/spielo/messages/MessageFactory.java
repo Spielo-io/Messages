@@ -1,6 +1,10 @@
 package io.spielo.messages;
 
-import io.spielo.messages.types.GenericEnumMixin;
+import io.spielo.messages.lobby.CreateLobbyMessage;
+import io.spielo.messages.lobby.CreateLobbyResponseMessage;
+import io.spielo.messages.lobby.JoinLobbyMessage;
+import io.spielo.messages.lobby.JoinLobbyResponseMessage;
+import io.spielo.messages.types.ByteEnum;
 import io.spielo.messages.types.MessageType1;
 import io.spielo.messages.types.MessageType2Lobby;
 import io.spielo.messages.types.MessageType2Server;
@@ -62,7 +66,7 @@ public class MessageFactory {
     	return null;
     }
     
-    private static<T extends Enum<T> & GenericEnumMixin> T getTypeFromByte(final Class<T> enumClass, final byte[] bytes, final int offset){
+    private static<T extends Enum<T> & ByteEnum> T getTypeFromByte(final Class<T> enumClass, final byte[] bytes, final int offset){
         T type = null;
         for (T a : enumClass.getEnumConstants()) {
             if (a.getByte() == bytes[offset]) {

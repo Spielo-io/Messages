@@ -1,5 +1,7 @@
 package io.spielo.messages.util;
 
+import io.spielo.messages.types.ByteEnum;
+
 public class BufferIterator {
 	int iterator;
 	final byte[] buffer;
@@ -11,6 +13,10 @@ public class BufferIterator {
 	
 	public final Boolean hasNext() {
 		return iterator < buffer.length;
+	}
+	
+	public final Boolean hasNextEnumByte() {
+		return hasNext();
 	}
 	
 	public final Boolean hasNextShort() {
@@ -30,6 +36,19 @@ public class BufferIterator {
 	public final byte getNext() {
 		return buffer[iterator++];
 	}
+
+	public <T extends Enum<T> & ByteEnum> T getNextByteEnum(final Class<T> enumClass) {
+		byte b = getNext();
+		T value = null; 
+		
+		for (T a : enumClass.getEnumConstants()) {
+            if (a.getByte() == b) {
+            	return value;
+            }
+        }
+  
+		throw new NullPointerException();
+  	}
 	
 	public final short getNextShort() {
 		return (short) (

@@ -1,5 +1,7 @@
-package io.spielo.messages;
+package io.spielo.messages.lobby;
 
+import io.spielo.messages.Message;
+import io.spielo.messages.MessageHeader;
 import io.spielo.messages.util.BufferBuilder;
 import io.spielo.messages.util.BufferIterator;
 
