@@ -39,29 +39,27 @@ public class BufferIterator {
 
 	public <T extends Enum<T> & ByteEnum> T getNextByteEnum(final Class<T> enumClass) {
 		byte b = getNext();
-		T value = null; 
 		
 		for (T a : enumClass.getEnumConstants()) {
             if (a.getByte() == b) {
-            	return value;
+            	return a;
             }
         }
-  
 		throw new NullPointerException();
   	}
 	
 	public final short getNextShort() {
 		return (short) (
 				(buffer[iterator++] & 0xFF) | 
-				(buffer[iterator++] & 0xFF << 8));
+				((buffer[iterator++] & 0xFF) << 8));
 	}
 	
 	public final int getNextInt() {
 		return (int) (
 				(buffer[iterator++] & 0xFF) | 
-				(buffer[iterator++] & 0xFF << 8)  | 
-				(buffer[iterator++] & 0xFF << 16) | 
-				(buffer[iterator++] & 0xFF << 24));
+				((buffer[iterator++] & 0xFF) << 8)  | 
+				((buffer[iterator++] & 0xFF) << 16) | 
+				((buffer[iterator++] & 0xFF) << 24));
 	}
 	
 	public final long getNextLong() {
