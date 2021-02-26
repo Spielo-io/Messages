@@ -15,31 +15,21 @@ public class CreateLobbyMessage extends Message {
 	private final LobbyGame game;
 	private final LobbyTimer timer;
 	private final LobbyBestOf bestOf;
-	private final String displayName;
+	private final String username;
 
 	public CreateLobbyMessage(final MessageHeader header, 
-			final Boolean isPublic, final LobbyGame game, final LobbyTimer timer, final LobbyBestOf bestOf, final String displayName) {
+			final Boolean isPublic, final LobbyGame game, final LobbyTimer timer, final LobbyBestOf bestOf, final String username) {
 		super(header);
 		this.isPublic = isPublic;
 		this.game = game;
 		this.timer = timer;
 		this.bestOf = bestOf;
-		this.displayName = displayName;
-	}
-
-	public CreateLobbyMessage(final MessageHeader header, 
-			Boolean isPublic, final LobbyGame game, final LobbyTimer timer, final LobbyBestOf bestOf) {
-		super(header);
-		this.isPublic = isPublic;
-		this.game = game;
-		this.timer = timer;
-		this.bestOf = bestOf;
-		this.displayName = "";
+		this.username = username;
 	}
 
 	@Override
 	protected short getBodyLength() {
-		return (short) (4 + displayName.getBytes(StandardCharsets.UTF_8).length);
+		return (short) (4 + username.getBytes(StandardCharsets.UTF_8).length);
 	}
 
 	@Override
@@ -48,7 +38,7 @@ public class CreateLobbyMessage extends Message {
 		builder.addByte(game.getByte());
 		builder.addByte(timer.getByte());
 		builder.addByte(bestOf.getByte());
-		builder.addString(displayName);
+		builder.addString(username);
 	}
 	
 	public static Message parse(BufferIterator iterator) {	
@@ -57,9 +47,7 @@ public class CreateLobbyMessage extends Message {
 		GenericEnumMixin game = getTypeFromByte(LobbyGame.class, iterator.getNext());
 		GenericEnumMixin timer = getTypeFromByte(LobbyTimer.class, iterator.getNext());
 		GenericEnumMixin bestOf = getTypeFromByte(LobbyBestOf.class, iterator.getNext());
-		String displayName = null;
-		if (iterator.hasNextString())
-			displayName = iterator.getString();
+		String displayName = iterator.getString();
 		
 		return new CreateLobbyMessage(header, 
 				isPublic, (LobbyGame) game, (LobbyTimer) timer, (LobbyBestOf) bestOf, displayName);
@@ -81,8 +69,8 @@ public class CreateLobbyMessage extends Message {
 		return bestOf;
 	}
 
-	public String getDisplayName() {
-		return displayName;
+	public String getUsername() {
+		return username;
 	}
     
     private static<T extends Enum<T> & GenericEnumMixin> T getTypeFromByte(final Class<T> enumClass, final byte b){

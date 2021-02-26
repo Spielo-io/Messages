@@ -7,30 +7,30 @@ import io.spielo.messages.util.BufferIterator;
 
 public class JoinLobbyMessage extends Message{
     private final String code;
-    private final String displayName;
+    private final String username;
 
-    public JoinLobbyMessage(final MessageHeader header, final String code, final String displayName) {
+    public JoinLobbyMessage(final MessageHeader header, final String code, final String username) {
         super(header);
         this.code = code;
-        this.displayName = displayName;
+        this.username = username;
     }
 
     @Override
     protected short getBodyLength() {
-        return (short)(code.getBytes(StandardCharsets.UTF_8).length + displayName.getBytes(StandardCharsets.UTF_8).length);
+        return (short)(code.getBytes(StandardCharsets.UTF_8).length + username.getBytes(StandardCharsets.UTF_8).length);
     }
 
     @Override
     protected void bodyIntoBuffer(BufferBuilder builder) {
         builder.addString(this.code);
-        builder.addString(this.displayName);
+        builder.addString(this.username);
     }
 
     public static Message parse(BufferIterator iterator) {
         MessageHeader header = MessageHeader.parse(iterator);
         String code = iterator.getString();
-        String display_name = iterator.getString();
-        return new JoinLobbyMessage(header, code, display_name);
+        String username = iterator.getString();
+        return new JoinLobbyMessage(header, code, username);
     }
 
     public String getCode() {
@@ -38,6 +38,6 @@ public class JoinLobbyMessage extends Message{
     }
 
     public String getDisplayName() {
-        return displayName;
+        return username;
     }
 }
