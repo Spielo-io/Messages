@@ -77,7 +77,7 @@ public class BufferIterator {
 		do {
 			builder.append(b);
 			b = buffer[iterator++];
-		} while (b != '\0');
+		} while (b != '\0' && iterator != buffer.length);
 
 		return builder.toString();
 	}
