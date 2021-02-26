@@ -9,7 +9,7 @@ public enum LobbyBestOf implements ByteEnum{
 	BestOf_5(2),
 	BestOf_7(3),
 	BestOf_9(4),
-	Indefinite(3);
+	Indefinite(5);
 
 	private final byte value;
 	
