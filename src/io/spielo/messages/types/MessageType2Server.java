@@ -1,6 +1,6 @@
 package io.spielo.messages.types;
 
-public enum MessageType2Server implements ByteEnum, MessageType2{
+public enum MessageType2Server implements ByteEnum {
     CONNECT((byte) 0), 
     HEARTBEAT((byte) 1), 
     DISCONNECT((byte) 2);
