@@ -2,7 +2,6 @@ package io.spielo.messages;
 
 import io.spielo.messages.types.ByteEnum;
 import io.spielo.messages.types.MessageType1;
-import io.spielo.messages.types.MessageType2;
 import io.spielo.messages.types.MessageType2Game;
 import io.spielo.messages.types.MessageType2Lobby;
 import io.spielo.messages.types.MessageType2Server;
