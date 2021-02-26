@@ -28,8 +28,7 @@ public class ConnectMessage extends Message {
 	protected void bodyIntoBuffer(final BufferBuilder builder) {		
 	}
 
-	public static Message parse(BufferIterator iterator) {	
-		MessageHeader header = MessageHeader.parse(iterator);
+	public static Message parse(final BufferIterator iterator, final MessageHeader header) {
 		return new ConnectMessage(header);
 	}
 }

@@ -25,8 +25,7 @@ public class CreateLobbyResponseMessage extends Message {
         builder.addString(this.code);
     }
 
-    public static Message parse(BufferIterator iterator) {
-        MessageHeader header = MessageHeader.parse(iterator);
+    public static Message parse(BufferIterator iterator, MessageHeader header) {
         String code = iterator.getString();
 
         return new CreateLobbyResponseMessage(header, code);

@@ -24,8 +24,7 @@ public class TicTacToeMessage extends Message {
     	builder.addByte(value);
     }
 
-    public static Message parse(BufferIterator iterator) {
-    	MessageHeader header = MessageHeader.parse(iterator);
+    public static Message parse(BufferIterator iterator, final MessageHeader header) {
     	byte value = iterator.getNext();
     	return new TicTacToeMessage(header, value);
     }

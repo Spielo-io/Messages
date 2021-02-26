@@ -1,15 +1,14 @@
 package io.spielo.messages.lobby;
 
+import java.nio.charset.StandardCharsets;
+
 import io.spielo.messages.Message;
 import io.spielo.messages.MessageHeader;
 import io.spielo.messages.lobbysettings.LobbyBestOf;
 import io.spielo.messages.lobbysettings.LobbyGame;
 import io.spielo.messages.lobbysettings.LobbyTimer;
-import io.spielo.messages.types.ByteEnum;
 import io.spielo.messages.util.BufferBuilder;
 import io.spielo.messages.util.BufferIterator;
-
-import java.nio.charset.StandardCharsets;
 
 public class CreateLobbyMessage extends Message {
 
@@ -43,8 +42,7 @@ public class CreateLobbyMessage extends Message {
 		builder.addString(username);
 	}
 	
-	public static Message parse(BufferIterator iterator) {	
-		MessageHeader header = MessageHeader.parse(iterator);
+	public static Message parse(BufferIterator iterator, MessageHeader header) {	
 		Boolean isPublic = iterator.getNext() == 1 ? true : false;
 		LobbyGame game = iterator.getNextByteEnum(LobbyGame.class);
 		LobbyTimer timer = iterator.getNextByteEnum(LobbyTimer.class);

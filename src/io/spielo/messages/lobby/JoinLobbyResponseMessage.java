@@ -39,8 +39,7 @@ public class JoinLobbyResponseMessage extends Message{
         builder.addByte(responseCode.getByte()).addString(username);
     }
 
-    public static Message parse(BufferIterator iterator) {
-        MessageHeader header = MessageHeader.parse(iterator);
+    public static Message parse(BufferIterator iterator, MessageHeader header) {
         JoinLobbyResponseCode responseCode = iterator.getNextByteEnum(JoinLobbyResponseCode.class);
         String username = iterator.getString();
 

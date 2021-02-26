@@ -28,8 +28,7 @@ public class JoinLobbyMessage extends Message{
         builder.addString(this.username);
     }
 
-    public static Message parse(BufferIterator iterator) {
-        MessageHeader header = MessageHeader.parse(iterator);
+    public static Message parse(BufferIterator iterator, MessageHeader header) {
         String code = iterator.getString();
         String username = iterator.getString();
         return new JoinLobbyMessage(header, code, username);
