@@ -57,7 +57,9 @@ public class CreateLobbyMessage extends Message {
 		GenericEnumMixin game = getTypeFromByte(LobbyGame.class, iterator.getNext());
 		GenericEnumMixin timer = getTypeFromByte(LobbyTimer.class, iterator.getNext());
 		GenericEnumMixin bestOf = getTypeFromByte(LobbyBestOf.class, iterator.getNext());
-		String displayName = iterator.getString();
+		String displayName = null;
+		if (iterator.hasNextString())
+			displayName = iterator.getString();
 		
 		return new CreateLobbyMessage(header, 
 				isPublic, (LobbyGame) game, (LobbyTimer) timer, (LobbyBestOf) bestOf, displayName);
