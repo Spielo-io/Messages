@@ -29,4 +29,8 @@ public class CreateLobbyResponseMessage extends Message {
 
         return new CreateLobbyResponseMessage(header, code);
     }
+
+    public String getCode() {
+        return code;
+    }
 }
