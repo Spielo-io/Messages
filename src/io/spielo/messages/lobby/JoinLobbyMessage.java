@@ -19,7 +19,7 @@ public class JoinLobbyMessage extends Message{
 
     @Override
     protected short getBodyLength() {
-        return (short)(code.getBytes(StandardCharsets.UTF_8).length + username.getBytes(StandardCharsets.UTF_8).length);
+        return (short)(code.getBytes(StandardCharsets.UTF_8).length + username.getBytes(StandardCharsets.UTF_8).length + 2);
     }
 
     @Override

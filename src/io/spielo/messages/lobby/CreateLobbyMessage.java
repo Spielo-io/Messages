@@ -29,7 +29,7 @@ public class CreateLobbyMessage extends Message {
 	
 	@Override
 	protected final short getBodyLength() {
-		return (short) (settings.getBufferLength() + username.getBytes(StandardCharsets.UTF_8).length);
+		return (short) (settings.getBufferLength() + username.getBytes(StandardCharsets.UTF_8).length + 1);
 	}
 
 	@Override
