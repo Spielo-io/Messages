@@ -75,7 +75,7 @@ public class BufferIterator {
 		
 		byte b = buffer[iterator++];
 		do {
-			builder.append(b);
+			builder.append((char) b);
 			b = buffer[iterator++];
 		} while (b != '\0' && iterator != buffer.length);
 
