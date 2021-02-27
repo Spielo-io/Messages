@@ -6,6 +6,8 @@ import io.spielo.messages.lobby.CreateLobbyMessage;
 import io.spielo.messages.lobby.CreateLobbyResponseMessage;
 import io.spielo.messages.lobby.JoinLobbyMessage;
 import io.spielo.messages.lobby.JoinLobbyResponseMessage;
+import io.spielo.messages.server.ConnectMessage;
+import io.spielo.messages.server.HeartbeatMessage;
 import io.spielo.messages.types.MessageType2Game;
 import io.spielo.messages.types.MessageType2Lobby;
 import io.spielo.messages.types.MessageType2Server;
