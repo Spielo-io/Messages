@@ -6,6 +6,8 @@ import io.spielo.messages.lobby.CreateLobbyMessage;
 import io.spielo.messages.lobby.CreateLobbyResponseMessage;
 import io.spielo.messages.lobby.JoinLobbyMessage;
 import io.spielo.messages.lobby.JoinLobbyResponseMessage;
+import io.spielo.messages.lobby.LobbySettingsMessage;
+import io.spielo.messages.lobby.PublicLobbyListMessage;
 import io.spielo.messages.server.ConnectMessage;
 import io.spielo.messages.server.HeartbeatMessage;
 import io.spielo.messages.types.MessageType2Game;
@@ -49,8 +51,10 @@ public class MessageFactory {
         switch (type2) {
             case CREATE:
 				return CreateLobbyMessage.parse(iterator, header);
+            case LOBBY_LIST:
+            	return PublicLobbyListMessage.parse(iterator, header);
             case SETTINGS:
-            	break;
+            	return LobbySettingsMessage.parse(iterator, header);
             case JOIN:
                 return JoinLobbyMessage.parse(iterator, header);
             case CREATERESPONSE:
