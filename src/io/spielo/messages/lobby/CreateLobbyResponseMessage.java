@@ -17,7 +17,7 @@ public class CreateLobbyResponseMessage extends Message {
 
     @Override
     protected short getBodyLength() {
-        return (short)this.code.getBytes(StandardCharsets.UTF_8).length;
+        return (short)(this.code.getBytes(StandardCharsets.UTF_8).length + 1);
     }
 
     @Override
