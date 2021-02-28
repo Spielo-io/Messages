@@ -15,6 +15,10 @@ public class BufferIterator {
 		return iterator < buffer.length;
 	}
 	
+	public final Boolean hasNextBool() {
+		return hasNext();
+	}
+	
 	public final Boolean hasNextEnumByte() {
 		return hasNext();
 	}
@@ -35,6 +39,11 @@ public class BufferIterator {
 
 	public final byte getNext() {
 		return buffer[iterator++];
+	}
+	
+	public final Boolean getNextBool() {
+		Boolean value = getNext() == 1 ? true : false;
+		return value;
 	}
 
 	public <T extends Enum<T> & ByteEnum> T getNextByteEnum(final Class<T> enumClass) {
