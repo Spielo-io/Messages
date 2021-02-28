@@ -7,7 +7,7 @@ import io.spielo.messages.util.BufferIterator;
 
 public class LobbyListRequestMessage extends Message {
 
-	protected LobbyListRequestMessage(final MessageHeader header) {
+	public LobbyListRequestMessage(final MessageHeader header) {
 		super(header);
 	}
 
