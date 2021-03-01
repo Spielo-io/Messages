@@ -21,6 +21,15 @@ public class BufferBuilder {
 		return this;
 	}
 	
+	public final BufferBuilder addBool(final Boolean value) {
+		if (value) {
+			buffer.add((byte) 1);
+		} else {
+			buffer.add((byte) 0);
+		}
+		return this;
+	}
+	
 	public final BufferBuilder addByteEnum(final ByteEnum value) {
 		buffer.add(value.getByte());
 		return this;
