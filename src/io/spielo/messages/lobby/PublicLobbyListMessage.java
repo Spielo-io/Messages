@@ -14,7 +14,7 @@ public class PublicLobbyListMessage extends Message {
 	private short bodyLength;
 	private final List<PublicLobby> list;
 	
-	protected PublicLobbyListMessage(final MessageHeader header, final int estimatedCount) {
+	public PublicLobbyListMessage(final MessageHeader header, final int estimatedCount) {
 		super(header);
 		
 		bodyLength = 0;
