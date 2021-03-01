@@ -18,12 +18,14 @@ public class HeartbeatMessage extends Message {
 	}
 
 	@Override
-	protected final short getBodyLength() {
+	public
+	final short getBodyLength() {
 		return 0;
 	}
 
 	@Override
-	protected final void bodyIntoBuffer(final BufferBuilder builder) {
+	public
+	final void bodyIntoBuffer(final BufferBuilder builder) {
 	}
 	
 	public static HeartbeatMessage parse(final BufferIterator iterator, final MessageHeader header) {

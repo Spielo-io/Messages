@@ -33,12 +33,14 @@ public class PublicLobbyListMessage extends Message {
 	}
 	
 	@Override
-	protected final short getBodyLength() {
+	public
+	final short getBodyLength() {
 		return bodyLength;
 	}
 
 	@Override
-	protected final void bodyIntoBuffer(final BufferBuilder builder) {
+	public
+	final void bodyIntoBuffer(final BufferBuilder builder) {
 		for (PublicLobby publicLobby : list) {
 			publicLobby.getSettings().intoBuffer(builder);
 			builder.addString(publicLobby.getLobbyCode());

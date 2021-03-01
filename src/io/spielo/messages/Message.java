@@ -25,7 +25,7 @@ public abstract class Message {
     	return header;
     }
     
-    protected abstract short getBodyLength();
+    public abstract short getBodyLength();
     
-    protected abstract void bodyIntoBuffer(final BufferBuilder builder);
+    public abstract void bodyIntoBuffer(final BufferBuilder builder);
 }

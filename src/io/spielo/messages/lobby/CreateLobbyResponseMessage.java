@@ -16,12 +16,12 @@ public class CreateLobbyResponseMessage extends Message {
     }
 
     @Override
-    protected short getBodyLength() {
+	public short getBodyLength() {
         return (short)(this.code.getBytes(StandardCharsets.UTF_8).length + 1);
     }
 
     @Override
-    protected void bodyIntoBuffer(BufferBuilder builder) {
+	public void bodyIntoBuffer(BufferBuilder builder) {
         builder.addString(this.code);
     }
 

@@ -30,12 +30,12 @@ public class JoinLobbyResponseMessage extends Message{
     }
 
     @Override
-    protected short getBodyLength() {
+	public short getBodyLength() {
         return (short) (2 + username.getBytes(StandardCharsets.UTF_8).length);
     }
 
     @Override
-    protected void bodyIntoBuffer(BufferBuilder builder) {
+	public void bodyIntoBuffer(BufferBuilder builder) {
         builder.addByte(responseCode.getByte()).addString(username);
     }
 

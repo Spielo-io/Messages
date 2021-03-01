@@ -15,12 +15,12 @@ public class ReadyToPlayMessage extends Message {
 	}
 
 	@Override
-	protected short getBodyLength() {
+	public short getBodyLength() {
 		return 1;
 	}
 
 	@Override
-	protected void bodyIntoBuffer(BufferBuilder builder) {
+	public void bodyIntoBuffer(BufferBuilder builder) {
 		builder.addBool(isReady);
 	}
 	

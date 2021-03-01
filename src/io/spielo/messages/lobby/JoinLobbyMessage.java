@@ -18,12 +18,12 @@ public class JoinLobbyMessage extends Message{
     }
 
     @Override
-    protected short getBodyLength() {
+	public short getBodyLength() {
         return (short)(code.getBytes(StandardCharsets.UTF_8).length + username.getBytes(StandardCharsets.UTF_8).length + 2);
     }
 
     @Override
-    protected void bodyIntoBuffer(BufferBuilder builder) {
+	public void bodyIntoBuffer(BufferBuilder builder) {
         builder.addString(this.code);
         builder.addString(this.username);
     }

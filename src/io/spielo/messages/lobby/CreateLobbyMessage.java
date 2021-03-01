@@ -28,12 +28,14 @@ public class CreateLobbyMessage extends Message {
 	}
 	
 	@Override
-	protected final short getBodyLength() {
+	public
+	final short getBodyLength() {
 		return (short) (settings.getBufferLength() + username.getBytes(StandardCharsets.UTF_8).length + 1);
 	}
 
 	@Override
-	protected final void bodyIntoBuffer(BufferBuilder builder) {
+	public
+	final void bodyIntoBuffer(BufferBuilder builder) {
 		settings.intoBuffer(builder);
 		builder.addString(username);
 	}

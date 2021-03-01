@@ -12,12 +12,12 @@ public class LobbyListRequestMessage extends Message {
 	}
 
 	@Override
-	protected short getBodyLength() {
+	public short getBodyLength() {
 		return 0;
 	}
 
 	@Override
-	protected void bodyIntoBuffer(BufferBuilder builder) {
+	public void bodyIntoBuffer(BufferBuilder builder) {
 	}
 
 	public static Message parse(final BufferIterator iterator, final MessageHeader header) {

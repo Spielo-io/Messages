@@ -20,12 +20,14 @@ public class LobbySettingsMessage extends Message {
 	}
 	
 	@Override
-	protected final short getBodyLength() {
+	public
+	final short getBodyLength() {
 		return settings.getBufferLength();
 	}
 
 	@Override
-	protected final void bodyIntoBuffer(BufferBuilder builder) {
+	public
+	final void bodyIntoBuffer(BufferBuilder builder) {
 		settings.intoBuffer(builder);
 	}
 	
