@@ -7,7 +7,7 @@ import io.spielo.messages.util.BufferIterator;
 
 public class DisconnectMessage extends Message {
 
-	protected DisconnectMessage(final MessageHeader header) {
+	public DisconnectMessage(final MessageHeader header) {
 		super(header);
 	}
 
