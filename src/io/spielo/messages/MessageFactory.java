@@ -11,6 +11,7 @@ import io.spielo.messages.lobby.LobbySettingsMessage;
 import io.spielo.messages.lobby.PublicLobbyListMessage;
 import io.spielo.messages.lobby.ReadyToPlayMessage;
 import io.spielo.messages.server.ConnectMessage;
+import io.spielo.messages.server.DisconnectMessage;
 import io.spielo.messages.server.HeartbeatMessage;
 import io.spielo.messages.types.MessageType2Game;
 import io.spielo.messages.types.MessageType2Lobby;
@@ -43,7 +44,7 @@ public class MessageFactory {
 			case HEARTBEAT:
 				return HeartbeatMessage.parse(iterator, header);
 			case DISCONNECT:
-				break;
+				return DisconnectMessage.parse(iterator, header);
 		}
     	return null;
     }
