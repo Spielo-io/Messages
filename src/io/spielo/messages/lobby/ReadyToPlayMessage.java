@@ -13,6 +13,10 @@ public class ReadyToPlayMessage extends Message {
 		super(header);
 		this.isReady = isReady;
 	}
+	
+	public final Boolean getIsReady() {
+		return isReady;
+	}
 
 	@Override
 	protected short getBodyLength() {

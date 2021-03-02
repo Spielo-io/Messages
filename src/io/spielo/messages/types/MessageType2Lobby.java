@@ -9,7 +9,8 @@ public enum MessageType2Lobby implements ByteEnum {
     SETTINGSRESPONSE((byte) 5), 
     LOBBY_LIST((byte) 6), 
     LOBBY_LIST_REQUEST((byte) 7), 
-    LOBBY_IS_READY((byte) 8);
+    LOBBY_IS_READY((byte) 8),
+    LEAVE((byte) 9);
 
     private final byte b;
 

@@ -19,18 +19,30 @@ public class JoinLobbyMessage extends Message{
 
     @Override
     protected short getBodyLength() {
-        return (short)(code.getBytes(StandardCharsets.UTF_8).length + username.getBytes(StandardCharsets.UTF_8).length + 2);
+    	short length = (short) (username.getBytes(StandardCharsets.UTF_8).length + 1);
+    	if (code != null)
+    		length += code.getBytes(StandardCharsets.UTF_8).length + 1;
+    	
+    	return length;
     }
 
     @Override
     protected void bodyIntoBuffer(BufferBuilder builder) {
-        builder.addString(this.code);
+    	if (code != null)
+    		builder.addString(this.code);
         builder.addString(this.username);
     }
 
     public static Message parse(BufferIterator iterator, MessageHeader header) {
         String code = iterator.getString();
-        String username = iterator.getString();
+        String username;
+        if (iterator.hasNextString()) {
+        	username = iterator.getString();
+        }
+        else {
+        	username = code;
+        	code = null;
+        }
         return new JoinLobbyMessage(header, code, username);
     }
 

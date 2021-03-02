@@ -22,4 +22,15 @@ jobs:
       run: ./gradlew -x test build
     - name: Run Unit Tests
       run: ./gradlew test
-
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: Unit Tests
+        path: |
+          build/reports/JUnit
+    - name: Upload Coverage Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: JaCoCo
+        path: |
+          build/reports/jacoco
