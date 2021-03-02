@@ -2,14 +2,7 @@ package io.spielo.messages;
 
 import io.spielo.messages.games.TicTacToeMessage;
 import io.spielo.messages.games.Win4Message;
-import io.spielo.messages.lobby.CreateLobbyMessage;
-import io.spielo.messages.lobby.CreateLobbyResponseMessage;
-import io.spielo.messages.lobby.JoinLobbyMessage;
-import io.spielo.messages.lobby.JoinLobbyResponseMessage;
-import io.spielo.messages.lobby.LobbyListRequestMessage;
-import io.spielo.messages.lobby.LobbySettingsMessage;
-import io.spielo.messages.lobby.PublicLobbyListMessage;
-import io.spielo.messages.lobby.ReadyToPlayMessage;
+import io.spielo.messages.lobby.*;
 import io.spielo.messages.server.ConnectMessage;
 import io.spielo.messages.server.HeartbeatMessage;
 import io.spielo.messages.types.MessageType2Game;
@@ -69,6 +62,8 @@ public class MessageFactory {
             	return ReadyToPlayMessage.parse(iterator, header);
             case SETTINGSRESPONSE:
                 break;
+            case LEAVE:
+                return LeaveLobbyMessage.parse(iterator, header);
             default:
 				break;
         }
