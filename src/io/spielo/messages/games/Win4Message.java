@@ -26,7 +26,7 @@ public class Win4Message extends Message {
 
     public static Message parse(BufferIterator iterator, final MessageHeader header) {
     	byte value = iterator.getNext();
-    	return new TicTacToeMessage(header, value);
+    	return new Win4Message(header, value);
     }
 
     public final byte getValue() {
